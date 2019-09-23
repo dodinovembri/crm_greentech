@@ -21,7 +21,7 @@ class Services_admin extends Admin_Controller
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         // users can access by admin
-        if(!$this->ion_auth->logged_in() or !$this->ion_auth->is_admin())
+        if(!$this->ion_auth->logged_in())
         {
              redirect('auth', 'refresh');
         }
