@@ -26,6 +26,8 @@
 
     <link rel="stylesheet" href="<?php echo base_url('assets/public/selling/css/style.css') ?>">
   </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
   
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300"> 
   <div class="site-wrap">
@@ -72,7 +74,7 @@
                 <li><a href="<?php echo base_url('/#purchase-section') ?>" class="nav-link">Purchase</a></li>
                 <li><a href="<?php echo base_url('/#about-section') ?>" class="nav-link">About Us</a></li>
                 <li><a href="<?php echo base_url('/#contact-section') ?>" class="nav-link">Contact Us</a></li>
-                <li><a href="<?php echo base_url('/fanspage') ?>" class="nav-link">Fanspage FB</a></li>
+                <li><a href="<?php echo base_url('/#fanspage-section') ?>" class="nav-link">Fanspage FB</a></li>
                 <li><a href="<?php echo base_url('/admin') ?>" class="nav-link">Login</a></li>   
               </ul>
             </nav>
@@ -217,21 +219,26 @@
 
     <div class="site-section" id="about-section">
       <div class="container">
+      <?php foreach($about as $row)
+        {
+      ?>
         <div class="row align-items-lg-center">
           <div class="col-md-6 mb-5 mb-lg-0 position-relative">
-            <img src="<?= base_url('assets/public/uploads/') ?><?= $about->image ?>" class="img-fluid" alt="Image">
+            <img src="<?= base_url('assets/public/uploads/') ?><?= $row['image']; ?>" class="img-fluid" alt="Image">
             <div class="experience">
-              <span class="year"><?= $about->title_image ?></span>
-              <span class="caption"><?= $about->sub_title_image ?></span>
+              <span class="year"><?= $row['title_image']; ?></span>
+              <span class="caption"><?= $row['sub_title_image']; ?></span>
             </div>
           </div>
           <div class="col-md-5 ml-auto">
             <h2 class="section-title mb-3">About Us</h2>
-            <h3 class="section-sub-title"><?= $about->company_name ?></h3>
+            <h3 class="section-sub-title"><?= $row['company_name']; ?></h3>
 			<br>
-            <p class="mb-4"><?= $about->ket ?></p>
+            <p class="mb-4"><?= $row['ket']; ?></p>
           </div>
         </div>
+                  <?php  }
+          ?>         
       </div>
     </div>
 
@@ -287,7 +294,7 @@
     </div>
 	
 	
-	<div class="site-section" >
+	<div class="site-section" id="fanspage-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-6 text-center">
@@ -374,7 +381,7 @@
   <script src="<?php echo base_url('assets/public/selling/js/jquery.fancybox.min.js') ?>"></script>
   <script src="<?php echo base_url('assets/public/selling/js/jquery.sticky.js') ?>"></script>
 
-  <script type="text/javascript" src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&amp;version=v2.5"></script>
+  <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.5"></script>
   
   <script src="<?php echo base_url('assets/public/selling/js/main.js') ?>"></script>
     

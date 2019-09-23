@@ -49,6 +49,103 @@ class About_admin extends Admin_Controller
                     ->_render_admin('index_user_admin', $data);
     }
 
+
+    public function add()
+    { 
+        $tables = $this->config->item('tables', 'about');
+        $identity_column = $this->config->item('identity', 'about');
+        $data['form']['identity_column'] = $identity_column;
+
+        // validate form input
+        // $this->form_validation->set_rules('image', 'Image', 'trim|required');
+        $this->form_validation->set_rules('title_image', 'Judul Gambar', 'trim|required');
+        $this->form_validation->set_rules('sub_title_image', 'Sub Judul Gambar', 'trim|required');
+        $this->form_validation->set_rules('company_name', 'Nama Perusahaan', 'trim|required');
+        // $this->form_validation->set_rules('ket', 'Ket Gambar', 'trim|required');
+
+        if ($this->form_validation->run() === TRUE)
+        {
+            $config['upload_path']          = './assets/public/uploads/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            // $config['max_size']             = 100;
+            // $config['max_width']            = 1024;
+            // $config['max_height']           = 768;
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('image')){
+                $error = array('error' => $this->upload->display_errors());
+                redirect('admin'. DIRECTORY_SEPARATOR .'about/add', 'refresh');
+            }else{
+                $data = array($this->upload->data());
+                $additional_data = array(
+                    'image' => $data[0]['file_name'],
+                    'title_image' => $this->input->post('title_image'),
+                    'sub_title_image' => $this->input->post('sub_title_image'),
+                    'company_name' => $this->input->post('company_name'),
+                    'ket' => $this->input->post('ket'),
+                );
+                $this->about_model->_create($additional_data);
+                            $this->session->set_flashdata('message', 'Sukses menambahkan about');
+                redirect('admin'. DIRECTORY_SEPARATOR .'about', 'refresh');
+            }
+
+
+        }
+        else
+        {
+            // display the create user form
+            // set the flash data error message if there is one
+            $data['message'] = (validation_errors() ? validation_errors() : ( $this->session->flashdata('message')));
+
+            $data['form']['image'] = array(
+                'name' => 'image',
+                'id' => 'image',
+                'class' => 'form-control',
+                'type' => 'text',
+                'placeholder' => 'Nama About',
+                'value' => $this->form_validation->set_value('image'),
+            );
+            $data['form']['title_image'] = array(
+                'name' => 'title_image',
+                'id' => 'title_image',
+                'class' => 'form-control',
+                'type' => 'text',
+                'placeholder' => 'Judul Gambar',
+                'value' => $this->form_validation->set_value('title_image'),
+            );            
+            $data['form']['sub_title_image'] = array(
+                'name' => 'sub_title_image',
+                'id' => 'sub_title_image',
+                'class' => 'form-control',
+                'type' => 'text',
+                'placeholder' => 'Sub Judul Gambar',
+                'value' => $this->form_validation->set_value('sub_title_image'),
+            );
+            $data['form']['company_name'] = array(
+                'name' => 'company_name',
+                'id' => 'company_name',
+                'class' => 'form-control',
+                'type' => 'text',
+                'placeholder' => 'Nama Perusahaan',
+                'value' => $this->form_validation->set_value('company_name'),
+            );   
+            $data['form']['ket'] = array(
+                'name' => 'ket',
+                'id' => 'ket',
+                'class' => 'form-control',
+                'type' => 'text',
+                'placeholder' => 'Ket Gambar',
+                'value' => $this->form_validation->set_value('ket'),
+            );                      
+
+            $data['page_title'] = 'Add About';
+            $data['page_description'] = 'Form Add About';
+            
+            $this->template->_render_admin('add_user_admin', $data);
+        }    
+    }
+
     public function edit($id)
     {
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
@@ -186,7 +283,21 @@ class About_admin extends Admin_Controller
 			return TRUE;
 		}
 			return FALSE;
-	}
+	} 
+
+    public function delete($id)
+    {    
+
+        if($this->about_model->_delete($id))
+        {
+            $this->session->set_flashdata('message', 'Delete about success!');
+        }
+        else
+        {
+            $this->session->set_flashdata('message', 'Something error!');
+        }
+        redirect('admin'. DIRECTORY_SEPARATOR .'about', 'refresh');
+    }    
 
     // public function json_users()
     // {

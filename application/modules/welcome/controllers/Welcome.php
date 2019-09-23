@@ -27,7 +27,7 @@ class Welcome extends Admin_Controller {
 	 */
 	public function index()
 	{
-        $data['about'] = $this->about_model->_read(1);
+        $data['about'] = $this->about_model->_datatable_index();
         $data['banners'] =  $this->home_model->_datatable_index();
         $data['services'] = $this->services_model->_datatable_index();
         $data['products'] = $this->products_model->_datatable_index();
