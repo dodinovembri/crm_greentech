@@ -250,36 +250,36 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-md-7 mb-5">
-            <form action="#" class="p-5 bg-white">
+          <div class="col-md-7 mb-5">            
+            <form action="<?php echo base_url('contact_us') ?>" method="GET" class="p-5 bg-white">                                        
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">First Name</label>
-                  <input type="text" id="fname" class="form-control rounded-0">
+                  <label class="text-black" for="fnamec">First Name</label>
+                  <input type="text" name="fnamec" class="form-control rounded-0">
                 </div>
                 <div class="col-md-6">
-                  <label class="text-black" for="lname">Last Name</label>
-                  <input type="text" id="lname" class="form-control rounded-0">
+                  <label class="text-black" for="lnamec">Last Name</label>
+                  <input type="text" name="lnamec" class="form-control rounded-0">
                 </div>
               </div>
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <label class="text-black" for="email">Email</label> 
-                  <input type="email" id="email" class="form-control rounded-0">
+                  <label class="text-black" for="emailc">Email</label> 
+                  <input type="email" name="emailc" class="form-control rounded-0">
                 </div>
               </div>
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <label class="text-black" for="subject">Subject</label> 
-                  <input type="subject" id="subject" class="form-control rounded-0">
+                  <label class="text-black" for="subjectc">Subject</label> 
+                  <input type="subject" name="subjectc" class="form-control rounded-0">
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control rounded-0" placeholder="Tulis pesan atau pertanyaan Anda di sini..."></textarea>
+                  <label class="text-black" for="messagec">Message</label> 
+                  <textarea name="messagec" cols="30" rows="7" class="form-control rounded-0" placeholder="Tulis pesan atau pertanyaan Anda di sini..."></textarea>
                 </div>
               </div>
               <div class="row form-group">

@@ -7,7 +7,7 @@ class Welcome extends Admin_Controller {
     {
         parent::__construct();
 	
-        $this->load->model(array('about_model', 'home_model', 'services_model', 'products_model', 'purchases_model'));
+        $this->load->model(array('about_model', 'home_model', 'services_model', 'products_model', 'purchases_model', 'contact_us_model'));
     }
 
 	/**
@@ -36,27 +36,37 @@ class Welcome extends Admin_Controller {
 
 	public function purchase()
 	{
+
+		if ($_GET) {
+			if(!$this->ion_auth->logged_in())
+	        {
+				echo '<script>window.alert("Anda harus login untuk melakukan pemesanan");</script>';				
+		       	echo "<script>window.location.href = '".base_url()."auth'</script>";				    	
+
+	        }
+	        else{
+				    $additional_data = array(
+                	'nama_depan' => $_GET['fname'],
+	                'nama_belakang' => $_GET['lname'],
+	                'email' => $_GET['email'],
+	                'subyek' => $_GET['subject'],
+	                'pesan' => $_GET['pesan'],
+	            );            
+
+			    $kirim = $this->purchases_model->_create($additional_data);
+			    if($kirim){
+		       		echo "<script>window.location.href = '../';</script>";				    	
+			    }else{
+			    	echo '<script>window.alert("Pesanan anda sudah terkirim, thankyou");</script>';
+		       		echo "<script>window.location.href = '../';</script>";
+		    	
+			    }
+	        }
+
+		}
 		if($_GET){
 
-            $additional_data = array(
-                'nama_depan' => $_GET['fname'],
-                'nama_belakang' => $_GET['lname'],
-                'email' => $_GET['email'],
-                'subyek' => $_GET['subject'],
-                'pesan' => $_GET['pesan'],
-            );
 
-		    $kirim = $this->purchases_model->_create($additional_data);
-		    if($kirim){
-
-			    echo '<script>window.alert("Pesanan anda tidak terkirim, cek kembali form");</script>';
-
-	       		echo "<script>window.location.href = '../';</script>";				    	
-		    }else{
-		    	echo '<script>window.alert("Pesanan anda sudah terkirim, thankyou");</script>';
-	       		echo "<script>window.location.href = '../';</script>";
-	    	
-		    }
 		}
 	}
 
@@ -77,6 +87,32 @@ class Welcome extends Admin_Controller {
 
 		$this->load->view('product_detail', $data);
 
+	}
+
+	public function contact_us()
+	{
+		if($_GET){
+
+            $additional_data = array(
+                'fname' => $_GET['fnamec'],
+                'lname' => $_GET['lnamec'],
+                'email' => $_GET['emailc'],
+                'subject' => $_GET['subjectc'],
+                'pesan' => $_GET['messagec'],
+            );
+
+		    $kirim = $this->contact_us_model->_create($additional_data);
+		    if($kirim){
+
+			    echo '<script>window.alert("Pesan anda tidak terkirim, cek kembali form");</script>';
+
+	       		echo "<script>window.location.href = '../';</script>";				    	
+		    }else{
+		    	echo '<script>window.alert("Pesan anda sudah terkirim, thankyou");</script>';
+	       		echo "<script>window.location.href = '../'".base_url().";</script>";
+	    	
+		    }
+		}
 	}
 
 }

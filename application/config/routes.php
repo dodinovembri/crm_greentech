@@ -51,8 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['purchase'] = 'welcome/purchase';
+$route['contact_us'] = 'welcome/contact_us';
 $route['fanspage'] = 'welcome/fanspage';
 $route['products'] = 'welcome/products';
+$route['register'] = 'welcome/register';
 $route['products/(:any)'] = 'welcome/products_detail/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

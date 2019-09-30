@@ -29,7 +29,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       {
         if(empty($nav['nav_child']))
         {
-          echo '<li class="'.$nav['active_link'].'"><a href="'.(($nav['nav_menu_link'] == '#') ? '#' : site_url('admin/'.$nav['nav_menu_link'])).'"><i class="'.$nav['nav_menu_icon'].'"></i> <span>'.$nav['nav_menu_name'].'</span></a></li>' .PHP_EOL;
+          if ( $this->session->userdata('username') != 'user') {          
+            echo '<li class="'.$nav['active_link'].'"><a href="'.(($nav['nav_menu_link'] == '#') ? '#' : site_url('admin/'.$nav['nav_menu_link'])).'"><i class="'.$nav['nav_menu_icon'].'"></i> <span>'.$nav['nav_menu_name'].'</span></a></li>' .PHP_EOL;
+          }          
+          
         }
         else
         {

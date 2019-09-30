@@ -64,14 +64,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
   <div class="row">
-    <div class="col-xs-8">
+<!--     <div class="col-xs-2">
       <div class="checkbox icheck">
         <label>
-           <!-- <input name="remember" value="1" type="checkbox"> Remember Me -->
+           <input name="remember" value="1" type="checkbox"> Remember Me
         </label>
       </div>
+    </div> -->
+    <div class="col-xs-4">
+      <a href="<?= site_url('auth/register'); ?>"><button type="button" class="btn btn-primary btn-block btn-flat">Register</button></a>
     </div>
     <div class="col-xs-4">
+      
+    </div>
+        <div class="col-xs-4">
       <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
     </div>
   </div>
