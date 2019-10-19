@@ -1936,7 +1936,7 @@ class Ion_auth_model extends CI_Model
 		$this->db->trans_begin();
 
 		// remove user from groups
-		$this->remove_from_group(NULL, $id);
+		// $this->remove_from_group(NULL, $id);
 
 		// delete user from users table should be placed after remove from group
 		$this->db->delete($this->tables['users'], array('id' => $id));

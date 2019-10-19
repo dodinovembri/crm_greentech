@@ -256,14 +256,14 @@ class Users_admin extends Admin_Controller
 
     public function edit($id)
     {
-		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
+		if (!$this->ion_auth->logged_in())
 		{
 			redirect('auth', 'refresh');
 		}
 
 		$user = $this->ion_auth->user($id)->row();
-		$groups = $this->ion_auth->groups()->result_array();
-		$currentGroups = $this->ion_auth->get_users_groups($id)->result();
+		// $groups = $this->ion_auth->groups()->result_array();
+		// $currentGroups = $this->ion_auth->get_users_groups($id)->result();
 
 		// validate form input
 		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
@@ -307,16 +307,16 @@ class Users_admin extends Admin_Controller
 				// Only allow updating groups if user is admin
 
                 // Update the groups user belongs to
-                $groupData = $this->input->post('groups');
+                // $groupData = $this->input->post('groups');
 
-                if (isset($groupData) && !empty($groupData))
-                {
-                    $this->ion_auth->remove_from_group('', $id);
-                    foreach ($groupData as $grp)
-                    {
-                        $this->ion_auth->add_to_group($grp, $id);
-                    }
-                }
+                // if (isset($groupData) && !empty($groupData))
+                // {
+                //     $this->ion_auth->remove_from_group('', $id);
+                //     foreach ($groupData as $grp)
+                //     {
+                //         $this->ion_auth->add_to_group($grp, $id);
+                //     }
+                // }
 
 				// check to see if we are updating the user
 				if ($this->ion_auth->update($user->id, $dataform))
@@ -345,8 +345,8 @@ class Users_admin extends Admin_Controller
 
 		// pass the user to the view
 		$data['form']['user'] = $user;
-		$data['form']['groups'] = $groups;
-		$data['form']['currentGroups'] = $currentGroups;
+		// $data['form']['groups'] = $groups;
+		// $data['form']['currentGroups'] = $currentGroups;
 
         $data['form']['id'] = array(
             'name' => 'id',
@@ -423,7 +423,7 @@ class Users_admin extends Admin_Controller
         
         $data['page_title'] = 'Edit User';
         $data['page_description'] = 'Form Edit User';
-        // $data['dt_users'] = $this->users_model->_read($id);
+        // $data['dt_users'] = $this->users_model->_read($id);        
         $this->template->_render_admin('edit_user_admin', $data);
     }
 

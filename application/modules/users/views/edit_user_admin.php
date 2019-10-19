@@ -198,38 +198,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
               </div>
               <!-- /.form-group -->
-              <div class="form-group">
-                <div class="col-sm-1">
-                  
-                </div>
-              <?php if ($this->ion_auth->is_admin()): ?>
-
-                <label class="col-sm-2 control-label">Member of Groups</label>
-                <div class="col-sm-8"><div class="checkbox">
-                <?php foreach ($form['groups'] as $group):?>
-                    <label>
-                    <?php
-                        $gID=$group['id'];
-                        $checked = null;
-                        $item = null;
-                        foreach($form['currentGroups'] as $grp) {
-                            if ($gID == $grp->id) {
-                                $checked= ' checked="checked"';
-                            break;
-                            }
-                        }
-                    ?>
-                    <input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>"<?php echo $checked;?>>
-                    <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
-                    </label>
-                <?php endforeach?>
-                </div></div>
-
-              <?php endif ?>
-                <div class="col-sm-1">
-                  
-                </div>
-              </div>
 
               <div class="form-group hidden">
                 <div class="col-sm-1">
