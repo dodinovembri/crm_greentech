@@ -126,15 +126,15 @@ class Products_admin extends Admin_Controller
 
     public function edit($id)
     {
-		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
+		if (!$this->ion_auth->logged_in())
 		{
 			redirect('auth', 'refresh');
 		}
 
         $product = $this->products_model->_read($id);
 		$user = $this->ion_auth->user($id)->row();
-		$groups = $this->ion_auth->groups()->result_array();
-		$currentGroups = $this->ion_auth->get_users_groups($id)->result();
+		// $groups = $this->ion_auth->groups()->result_array();
+		// $currentGroups = $this->ion_auth->get_users_groups($id)->result();
 
 		// validate form input
         $this->form_validation->set_rules('ket_product', 'Keterangan Product', 'trim|required');
