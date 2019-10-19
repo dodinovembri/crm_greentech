@@ -92,7 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <label class="col-sm-2 control-label">Nama produk</label>
                 <div class="col-sm-8">
-                  <input name="nama_produk" class="form-control" id="input-username" placeholder="Nama Produk" type="text" value="<?php echo $dt_users->nama_product; ?>">
+                  <input name="nama_product" class="form-control" id="input-username" placeholder="Nama Produk" type="text" value="<?php echo $dt_users->nama_product; ?>">
                 </div>
                 <div class="col-sm-1">
                   
