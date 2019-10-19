@@ -48,4 +48,12 @@ class Auth_models extends CI_Model
         return $this->db->get('products')->num_rows();
     }
 
+    public function check_auth($email, $table = 'users')
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where('email', $email);
+        return $query = $this->db->get();
+    }    
+
 }

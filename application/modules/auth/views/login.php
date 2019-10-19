@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <?php } ?>
   <!-- /.alert alert-danger -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Sign in to start your session or <a href="<?php echo base_url('welcome') ?>">back to home</a></p>
 
 
 <!-- form login -->

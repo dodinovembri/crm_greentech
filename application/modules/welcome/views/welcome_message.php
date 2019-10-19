@@ -65,7 +65,7 @@
         <div class="row align-items-center">         
           <div class="col-6 col-xl-2">
           </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
+          <div class="col-12 col-md-11 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="<?php echo base_url('/#home-section') ?>" class="nav-link">Home</a></li>
@@ -75,7 +75,12 @@
                 <li><a href="<?php echo base_url('/#about-section') ?>" class="nav-link">About Us</a></li>
                 <li><a href="<?php echo base_url('/#contact-section') ?>" class="nav-link">Contact Us</a></li>
                 <li><a href="<?php echo base_url('/#fanspage-section') ?>" class="nav-link">Fanspage FB</a></li>
-                <li><a href="<?php echo base_url('/admin') ?>" class="nav-link">Login</a></li>   
+                <?php if (empty($this->session->userdata('username'))) { ?>           
+                  <li><a href="<?php echo base_url('/admin') ?>" class="nav-link">Login</a></li>                           
+                <?php }else{ ?>
+                  <li><a href="<?php echo base_url('auth/logout') ?>" class="nav-link">Logout</a></li>                   
+                <?php } ?>
+                
               </ul>
             </nav>
           </div>

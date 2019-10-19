@@ -68,7 +68,20 @@ class Auth extends Public_Controller
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				$this->build_user_session();
-				redirect('admin/dashboard', 'refresh');
+
+				$check = $this->auth_models->check_auth($email)->result();
+				foreach ($check as $key => $value) {
+					$akses = $value->username;						
+				}				
+				if ($akses == 'user') {
+					redirect('welcome', 'refresh');
+					// $this->load->view('login', $data, FALSE);   
+				}else
+				{
+					redirect('admin/dashboard', 'refresh');
+					// $this->load->view('login', $data, FALSE);   
+				}	
+				// redirect('admin/dashboard', 'refresh');
 			}
 			else
 			{
