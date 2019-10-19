@@ -47,6 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <th>E-mail</th>
                         <th>Subyek</th>
                         <th>Pesan</th>
+                        <th>Status</th>
                         <th>Dikirim</th>
                         <th>Action</th>
                       </tr>
@@ -60,7 +61,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         echo '<td>'.$dt['nama_belakang'].'</td>' .PHP_EOL;
                         echo '<td>'.$dt['email'].'</td>' .PHP_EOL;
                         echo '<td>'.$dt['subyek'].'</td>' .PHP_EOL;
-                        echo '<td>'.$dt['pesan'].'</td>' .PHP_EOL;
+                        echo '<td>'.$dt['pesan'].'</td>' .PHP_EOL;                        
+                        if ($dt['confirm'] == 1) {
+                          echo '<td>Selesai</td>' .PHP_EOL;
+                        }else{
+                          echo '<td>Belum</td>' .PHP_EOL;
+                        }
                         echo '<td>'.date("Y-m-d H:i:s", strtotime($dt['created_at'])).'</td>' .PHP_EOL;
                         echo '<td>'.PHP_EOL.'
                         <a href="'.site_url('admin/purchases/view/'.$dt['id']).'" data-skin="skin-blue" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>'.PHP_EOL.'

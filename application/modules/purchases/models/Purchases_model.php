@@ -40,4 +40,14 @@ class Purchases_model extends CI_Model
     {
         return $this->db->get('purchase')->result_array();
     }
+
+    public function updateconfrim($id, $data = array(), $table = 'purchase')
+    {
+        # code...
+        if(!empty($id) and !empty($data))
+        {
+            $this->db->where('id', $id);
+            $this->db->update($table, $data);    
+        }  
+    }     
 }

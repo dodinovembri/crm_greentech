@@ -75,6 +75,7 @@ class Products_admin extends Admin_Controller
             }else{
                 $data = array($this->upload->data());
                 $additional_data = array(
+                    'id_admin' => $this->session->userdata('id_admin'),                    
                     'nama_product' => $this->input->post('nama_product'),
                     'ket_product' => $this->input->post('ket_product'),
                     'gambar_product' => $data[0]['file_name'],
@@ -167,6 +168,7 @@ class Products_admin extends Admin_Controller
                 }else{
                     $data = array($this->upload->data());
                     $additional_data = array(
+                        'id_admin' => $this->session->userdata('id_admin'),                    
                         'nama_product' => $this->input->post('nama_product'),
                         'ket_product' => $this->input->post('ket_product'),
                         'gambar_product' => $data[0]['file_name'],

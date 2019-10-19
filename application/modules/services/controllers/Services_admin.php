@@ -63,6 +63,7 @@ class Services_admin extends Admin_Controller
         {
 
             $additional_data = array(
+                'id_admin' => $this->session->userdata('id_admin'),                                                            
                 'icon_service' => $this->input->post('icon_service'),
                 'nama_service' => $this->input->post('nama_service'),
                 'ket' => $this->input->post('ket'),
@@ -149,6 +150,7 @@ class Services_admin extends Admin_Controller
 			{
 
                 $additional_data = array(
+                    'id_admin' => $this->session->userdata('id_admin'),                                                               
                     'icon_service' => $this->input->post('icon_service'),
                     'nama_service' => $this->input->post('nama_service'),
                     'ket' => $this->input->post('ket'),

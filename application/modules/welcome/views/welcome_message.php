@@ -65,7 +65,7 @@
         <div class="row align-items-center">         
           <div class="col-6 col-xl-2">
           </div>
-          <div class="col-12 col-md-11 d-none d-xl-block">
+          <div class="col-12 col-md-12 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="<?php echo base_url('/#home-section') ?>" class="nav-link">Home</a></li>
@@ -79,6 +79,7 @@
                   <li><a href="<?php echo base_url('/admin') ?>" class="nav-link">Login</a></li>                           
                 <?php }else{ ?>
                   <li><a href="<?php echo base_url('auth/logout') ?>" class="nav-link">Logout</a></li>                   
+                  <li><a href="<?php echo base_url('welcome/pesan') ?>" class="nav-link">Pesan</a></li>                   
                 <?php } ?>
                 
               </ul>
@@ -171,7 +172,15 @@
         </div>
       </div>
     </div>
-    
+     <?php if ($users == '') {
+        $first_name = '';
+        $last_name = '';
+        $email = '';
+      }else{
+        $first_name = $users->first_name;
+        $last_name = $users->last_name;
+        $email = $users->email;
+      } ?>
     <div class="site-section bg-light" id="purchase-section">
       <div class="container">
         <div class="row mb-5">
@@ -185,18 +194,18 @@
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="fname">First Name</label>
-                  <input type="text" name="fname" class="form-control rounded-0 required">
+                  <input type="text" name="fname" class="form-control rounded-0 required" value="<?= $first_name; ?>">
                 </div>
                 <div class="col-md-6">
                   <label class="text-black" for="lname">Last Name</label>
-                  <input type="text" name="lname" class="form-control rounded-0 required">
+                  <input type="text" name="lname" class="form-control rounded-0 required" value="<?= $last_name; ?>">
                 </div>
               </div>
               <div class="row form-group">
                
                 <div class="col-md-12">
                   <label class="text-black" for="email">Bussiness Email</label> 
-                  <input type="email" name="email" class="form-control rounded-0 required">
+                  <input type="email" name="email" class="form-control rounded-0 required" value="<?= $email; ?>">
                 </div>
               </div>
               <div class="row form-group">              
@@ -259,19 +268,19 @@
             <form action="<?php echo base_url('contact_us') ?>" method="GET" class="p-5 bg-white">                                        
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="fnamec">First Name</label>
-                  <input type="text" name="fnamec" class="form-control rounded-0">
+                  <label class="text-black" for="fnamec">First Name</label>                 
+                  <input type="text" name="fnamec" class="form-control rounded-0" value="<?= $first_name; ?>">
                 </div>
                 <div class="col-md-6">
                   <label class="text-black" for="lnamec">Last Name</label>
-                  <input type="text" name="lnamec" class="form-control rounded-0">
+                  <input type="text" name="lnamec" class="form-control rounded-0" value="<?= $last_name; ?>">
                 </div>
               </div>
               <div class="row form-group">
                 
                 <div class="col-md-12">
                   <label class="text-black" for="emailc">Email</label> 
-                  <input type="email" name="emailc" class="form-control rounded-0">
+                  <input type="email" name="emailc" class="form-control rounded-0" value="<?= $email; ?>">
                 </div>
               </div>
               <div class="row form-group">

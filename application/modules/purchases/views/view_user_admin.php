@@ -2,6 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!-- Content Wrapper. Contains page content -->
+
+<script type="text/javascript">
+   function konfirmasi() {
+              tanya = confirm("Are you sure this data has been process ??");
+              if (tanya == true) {
+                return true;
+              }
+              else
+                return false;
+            }
+</script>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -33,6 +44,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a class="btn btn-app" href="<?php echo site_url('admin/purchases'); ?>">
                 <i class="fa fa-arrow-left"></i> Back
               </a>
+              <a class="btn btn-app" onclick="konfirmasi()" href="<?php echo site_url('admin/purchases/update_process/'.$dt_users->id); ?>">
+                <i class="fa fa-rotate-left"></i> Proses
+              </a>               
             </div>
             <div class="col-sm-6">
               <a class="btn btn-app pull-right bg-maroon" href="<?php echo site_url('admin/purchases/delete/'.$dt_users->id); ?>">

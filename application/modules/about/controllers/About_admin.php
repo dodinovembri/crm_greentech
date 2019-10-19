@@ -79,6 +79,7 @@ class About_admin extends Admin_Controller
             }else{
                 $data = array($this->upload->data());
                 $additional_data = array(
+                    'id_admin' => $this->session->userdata('id_admin'),
                     'image' => $data[0]['file_name'],
                     'title_image' => $this->input->post('title_image'),
                     'sub_title_image' => $this->input->post('sub_title_image'),
@@ -191,6 +192,7 @@ class About_admin extends Admin_Controller
                 }else{
                     $data = array($this->upload->data());
                     $additional_data = array(
+                        'id_admin' => $this->session->userdata('id_admin'),                        
                         'title_image' => $this->input->post('title_image'),
                         'sub_title_image' => $this->input->post('sub_title_image'),
                         'company_name' => $this->input->post('company_name'),

@@ -74,6 +74,7 @@ class Home_admin extends Admin_Controller
             }else{
                 $data = array($this->upload->data());
                 $additional_data = array(
+                    'id_admin' => $this->session->userdata('id_admin'),                                        
                     'nama_barang' => $data[0]['file_name'],
                 );
                 $this->home_model->_create($additional_data);
@@ -139,6 +140,7 @@ class Home_admin extends Admin_Controller
                 }else{
                     $data = array($this->upload->data());
                     $additional_data = array(
+                        'id_admin' => $this->session->userdata('id_admin'),                                            
                         'nama_barang' => $data[0]['file_name'],
                     );
                     $this->home_model->_update($product->id, $additional_data);

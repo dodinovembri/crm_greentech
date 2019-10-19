@@ -61,12 +61,18 @@ class Auth extends Public_Controller
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 			$remember = (bool)$this->input->post('remember');
+			$check_id = $this->auth_models->check_auth($email)->result();
+			foreach ($check_id as $key => $idadmin) {
+				$id_admin = $idadmin->id;
+			}
+
 
 			if ($this->ion_auth->login($email, $password, $remember))
 			{
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
+				$this->session->set_userdata('id_admin', $id_admin );
 				$this->build_user_session();
 
 				$check = $this->auth_models->check_auth($email)->result();

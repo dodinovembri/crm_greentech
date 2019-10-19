@@ -47,6 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <th>E-mail</th>
                         <th>Subyek</th>
                         <th>Pesan</th>
+                        <th>Pesan Reply</th>
                         <th>Dikirim</th>
                         <th>Action</th>
                       </tr>
@@ -61,6 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         echo '<td>'.$dt['email'].'</td>' .PHP_EOL;
                         echo '<td>'.$dt['subject'].'</td>' .PHP_EOL;
                         echo '<td>'.$dt['pesan'].'</td>' .PHP_EOL;
+                        echo '<td>'.$dt['pesanreply'].'</td>' .PHP_EOL;
                         echo '<td>'.date("Y-m-d H:i:s", strtotime($dt['created_at'])).'</td>' .PHP_EOL;
                         echo '<td>'.PHP_EOL.'
                         <a href="'.site_url('admin/contact_us/view/'.$dt['id']).'" data-skin="skin-blue" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>'.PHP_EOL.'

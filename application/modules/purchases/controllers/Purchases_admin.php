@@ -104,4 +104,12 @@ class Purchases_admin extends Admin_Controller
     //                         ->generate());
     //     // echo var_dump($this->datatables->_get_table('users'));
     // }
+
+    
+    public function update_process($id)
+    {        
+        $data = array('id_admin' => $this->session->userdata('id_admin'), 'confirm' => 1 );
+        $this->purchases_model->updateconfrim($id, $data);   
+        redirect('admin'. DIRECTORY_SEPARATOR .'purchases', 'refresh');            
+    }       
 }

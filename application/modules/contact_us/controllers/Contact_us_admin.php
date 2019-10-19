@@ -53,9 +53,19 @@ class Contact_us_admin extends Admin_Controller
     {
         $data['page_title'] = 'View Contact Us';
         $data['page_description'] = '';
+        $data['reply'] = '';        
         $data['dt_users'] = $this->contact_us_model->_read($id);
         $this->template->_render_admin('view_user_admin', $data);
     }
+
+    public function reply($id)
+    {
+        $data['page_title'] = 'View Contact Us';
+        $data['page_description'] = '';
+        $data['reply'] = 'replymsg';
+        $data['dt_users'] = $this->contact_us_model->_read($id);
+        $this->template->_render_admin('view_user_admin', $data);
+    }    
 
     public function delete($id)
     {    
@@ -104,4 +114,13 @@ class Contact_us_admin extends Admin_Controller
     //                         ->generate());
     //     // echo var_dump($this->datatables->_get_table('users'));
     // }
+
+    public function updatereply()
+    {
+        $id = $this->input->post('id');
+        $replymsg = $this->input->post('pesanreply');
+        $data = array('id_admin' => $this->session->userdata('id_admin'), 'pesanreply' => $replymsg );
+        $this->contact_us_model->updatepesan($id, $data);   
+        redirect('admin'. DIRECTORY_SEPARATOR .'contact_us', 'refresh');            
+    }    
 }

@@ -33,6 +33,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a class="btn btn-app" href="<?php echo site_url('admin/contact_us'); ?>">
                 <i class="fa fa-arrow-left"></i> Back
               </a>
+              <a class="btn btn-app" href="<?php echo site_url('admin/contact_us/reply/'.$dt_users->id); ?>">
+                <i class="fa fa-rotate-left"></i> Reply
+              </a>              
             </div>
             <div class="col-sm-6">
               <a class="btn btn-app pull-right bg-maroon" href="<?php echo site_url('admin/contact_us/delete/'.$dt_users->id); ?>">
@@ -145,6 +148,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </div>
     <!-- /.row -->
+    
+    <?php if (!empty($reply) || ($reply == 'replymsg')) { ?>
+          <!-- /.row -->
+      <div class="row">
+        <div class="col-sm-12">
+        <?php echo form_open('admin/contact_us/updatereply'); ?>          
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Reply Message</h3>
+            </div>     
+            <!-- /.box-header -->
+            <div class="box-body">
+            
+              <div class="form-horizontal">
+                <div class="form-group hidden">
+                  <div class="col-sm-1">
+                    
+                  </div>
+                  <label class="col-sm-2 control-label">Id</label>
+                  <div class="col-sm-8">
+                    <input name="id" class="form-control" id="input-id" placeholder="ID" type="text" value="<?php echo $dt_users->id; ?>">
+                  </div>
+                  <div class="col-sm-1">
+                    
+                  </div>
+                </div>
+                <!-- /.form-group -->
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <div class="col-sm-1">
+                    
+                  </div>
+                  <label class="col-sm-2 control-label">Pesan</label>
+                  <div class="col-sm-8">
+                    <textarea name="pesanreply" class="form-control" id="input-email" placeholder="Pesan" type="text"></textarea>
+                  </div>
+                  <div class="col-sm-1">
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- /.form-horizontal -->
+    
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+              <button type="submit" class="btn btn-info">Reply</button>
+
+            </div>
+            
+            <div class="col-sm-1">
+            </div> 
+           </div>
+            
+          </div>
+          <!-- /.box -->
+         
+        </div>
+        <!-- /.col-sm-12 -->
+        <?php echo form_close(); ?>
+      </div>
+      <!-- /.row --> 
+    <?php } ?>   
   
     <!--------------------------
       | Your Page Content Here |

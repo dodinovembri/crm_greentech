@@ -31,6 +31,11 @@ class Welcome extends Admin_Controller {
         $data['banners'] =  $this->home_model->_datatable_index();
         $data['services'] = $this->services_model->_datatable_index();
         $data['products'] = $this->products_model->_datatable_index();
+       	if (!empty($this->session->userdata('id_admin'))) {
+       		$data['users'] = $this->contact_us_model->getdata($this->session->userdata('id_admin'));
+       	}else{
+       		$data['users'] = '';
+       	}
 		$this->load->view('welcome_message', $data);
 	}
 
@@ -46,6 +51,7 @@ class Welcome extends Admin_Controller {
 	        }
 	        else{
 				    $additional_data = array(
+	            	'id_cust' => $this->session->userdata('id_admin'),         				    	
                 	'nama_depan' => $_GET['fname'],
 	                'nama_belakang' => $_GET['lname'],
 	                'email' => $_GET['email'],
@@ -58,7 +64,7 @@ class Welcome extends Admin_Controller {
 		       		echo "<script>window.location.href = '../';</script>";				    	
 			    }else{
 			    	echo '<script>window.alert("Pesanan anda sudah terkirim, thankyou");</script>';
-		       		echo "<script>window.location.href = '../';</script>";
+		       		echo "<script>window.location.href = '".base_url()."';</script>";		       		
 		    	
 			    }
 	        }
@@ -92,27 +98,47 @@ class Welcome extends Admin_Controller {
 	public function contact_us()
 	{
 		if($_GET){
+			if(!$this->ion_auth->logged_in())
+	        {
+				echo '<script>window.alert("Anda harus login untuk mengirim pesan");</script>';				
+		       	echo "<script>window.location.href = '".base_url()."auth'</script>";				    	
 
-            $additional_data = array(
-                'fname' => $_GET['fnamec'],
-                'lname' => $_GET['lnamec'],
-                'email' => $_GET['emailc'],
-                'subject' => $_GET['subjectc'],
-                'pesan' => $_GET['messagec'],
-            );
+	        }else
+	        {
+	        	$additional_data = array(
+	            	'id_cust' => $this->session->userdata('id_admin'),         
+	                'fname' => $_GET['fnamec'],
+	                'lname' => $_GET['lnamec'],
+	                'email' => $_GET['emailc'],
+	                'subject' => $_GET['subjectc'],
+	                'pesan' => $_GET['messagec'],
+	            );
 
-		    $kirim = $this->contact_us_model->_create($additional_data);
-		    if($kirim){
+			    $kirim = $this->contact_us_model->_create($additional_data);
+			    if($kirim){
 
-			    echo '<script>window.alert("Pesan anda tidak terkirim, cek kembali form");</script>';
+				    echo '<script>window.alert("Pesan anda tidak terkirim, cek kembali form");</script>';
 
-	       		echo "<script>window.location.href = '../';</script>";				    	
-		    }else{
-		    	echo '<script>window.alert("Pesan anda sudah terkirim, thankyou");</script>';
-	       		echo "<script>window.location.href = '../'".base_url().";</script>";
-	    	
-		    }
+		       		echo "<script>window.location.href = '../';</script>";				    	
+			    }else{
+			    	echo '<script>window.alert("Pesan anda sudah terkirim, thankyou");</script>';
+		       		echo "<script>window.location.href = '".base_url()."';</script>";
+		    	
+			    }
+	        }
+
 		}
 	}
+
+	public function pesan()
+	{
+		$data['contact_us'] = $this->contact_us_model->_datatable_index();      
+       	if (!empty($this->session->userdata('id_admin'))) {
+       		$data['users'] = $this->contact_us_model->getdata($this->session->userdata('id_admin'));
+       	}else{
+       		$data['users'] = '';
+       	}
+		$this->load->view('pesan', $data);
+	}	
 
 }

@@ -38,6 +38,11 @@ class Contact_us_model extends CI_Model
 
     public function _datatable_index()
     {
-        return $this->db->get('purchase')->result_array();
+        return $this->db->get('contact_us')->result_array();
     }
+
+    public function getdata($id, $table = 'users')
+    {
+         return $this->db->get_where($table, array('id' => $id))->row();
+    }    
 }
